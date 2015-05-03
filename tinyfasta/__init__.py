@@ -38,4 +38,13 @@ class FastaParser(object):
 
     def __iter__(self):
         """Yield FastaRecord instances."""
-        yield None
+        fasta_record = None
+        with open(self.fpath, 'r') as fh:
+            for line in fh:
+                if line.startswith('>'):
+                    if fasta_record:
+                        yield fasta_record
+                    fasta_record = FastaRecord(line)
+                else:
+                    fasta_record.add_sequence_line(line)
+        yield fasta_record
