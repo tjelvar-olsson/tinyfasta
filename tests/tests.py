@@ -27,6 +27,16 @@ class FunctionalTests(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(TMP_DIR)
 
+    def test_output_is_consistent_with_input(self):
+        from tinyfasta import FastaParser
+        input_fasta = os.path.join(DATA_DIR, "dummy.fasta")
+        output_fasta = os.path.join(TMP_DIR, "tmp.fasta")
+        with open(output_fasta, "w") as fh:
+            for fasta_record in FastaParser(input_fasta):
+                fh.write("{}\n".format(fasta_record))
+        input_data = open(input_fasta, "r").read()
+        output_data = open(output_fasta, "r").read()
+        self.assertEqual(input_data, output_data)
 
 if __name__ == "__main__":
     unittest.main()
