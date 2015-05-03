@@ -22,6 +22,13 @@ class FastaParserUnitTests(unittest.TestCase):
         fasta_parser = FastaParser('test.fasta')
         self.assertTrue(hasattr(fasta_parser, '__iter__'))
 
+class FastaRecordUnitTests(unittest.TestCase):
+
+    def test_FastaRecord_initialisation(self):
+        from tinyfasta import FastaRecord
+        fasta_record = FastaRecord(">seq101|testing\n")
+        self.assertEqual(fasta_record.description, ">seq101|testing")
+
 
 if __name__ == "__main__":
     unittest.main()
