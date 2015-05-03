@@ -9,6 +9,19 @@ class FastaRecord(object):
     def __init__(self, description_line):
         """Initialise an instance of the FastaRecord class."""
         self.description = description_line.strip()
+        self._sequences = []
+
+    @property
+    def sequence(self):
+        """Return the full sequence as a string."""
+        return ''.join(self._sequences)
+
+    def add_sequence_line(self, sequence_line):
+        """
+        Add a sequence line to the FastaRecord instance.
+        This function can be called more than once.
+        """
+        self._sequences.append( sequence_line.strip() )
 
 class FastaParser(object):
     """Class for parsing FASTA files."""
