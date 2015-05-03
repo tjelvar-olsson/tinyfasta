@@ -18,6 +18,11 @@ class UnitTests(unittest.TestCase):
         import tinyfasta
         self.assertTrue(isinstance(tinyfasta.__version__, str))
 
+    def test_FastaParser_initialisation(self):
+        from tinyfasta import FastaParser
+        fasta_parser = FastaParser('test.fasta')
+        self.assertEqual(fasta_parser.fpath, 'test.fasta')
+
 class FunctionalTests(unittest.TestCase):
 
     def setUp(self):
