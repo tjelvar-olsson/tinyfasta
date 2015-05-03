@@ -9,3 +9,6 @@ class FastaParser(object):
         """Initialise an instance of the FastaParser."""
         self.fpath = fpath
 
+    def __iter__(self):
+        """Yield FastaRecord instances."""
+        yield None

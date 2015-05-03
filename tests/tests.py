@@ -23,6 +23,12 @@ class UnitTests(unittest.TestCase):
         fasta_parser = FastaParser('test.fasta')
         self.assertEqual(fasta_parser.fpath, 'test.fasta')
 
+    def test_FastaParser_is_iterable(self):
+        from tinyfasta import FastaParser
+        fasta_parser = FastaParser('test.fasta')
+        self.assertTrue(hasattr(fasta_parser, '__iter__'))
+
+
 class FunctionalTests(unittest.TestCase):
 
     def setUp(self):
