@@ -1,6 +1,6 @@
 import unittest
 
-class UnitTests(unittest.TestCase):
+class PackageUnitTests(unittest.TestCase):
 
     def test_can_import_package(self):
         # Raises import error if the package cannot be imported.
@@ -9,6 +9,8 @@ class UnitTests(unittest.TestCase):
     def test_package_has_version_string(self):
         import tinyfasta
         self.assertTrue(isinstance(tinyfasta.__version__, str))
+
+class FastaParserUnitTests(unittest.TestCase):
 
     def test_FastaParser_initialisation(self):
         from tinyfasta import FastaParser
