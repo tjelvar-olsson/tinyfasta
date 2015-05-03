@@ -11,6 +11,12 @@ class FastaRecord(object):
         self.description = description_line.strip()
         self._sequences = []
 
+    def __repr__(self):
+        """Representation of the FastaRecord instance."""
+        lines = [self.description,]
+        lines.extend(self._sequences)
+        return '\n'.join(lines)
+
     @property
     def sequence(self):
         """Return the full sequence as a string."""

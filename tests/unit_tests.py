@@ -36,6 +36,13 @@ class FastaRecordUnitTests(unittest.TestCase):
         fasta_record.add_sequence_line("TAAT")
         self.assertEqual(fasta_record.sequence, "attaTAAT")
 
+    def test_string_representation(self):
+        from tinyfasta import FastaRecord
+        fasta_record = FastaRecord(">seq101|testing\n")
+        fasta_record.add_sequence_line("atta\n")
+        fasta_record.add_sequence_line("TAAT")
+        self.assertEqual(str(fasta_record),
+            '\n'.join([">seq101|testing", "atta", "TAAT"]))
 
 if __name__ == "__main__":
     unittest.main()
