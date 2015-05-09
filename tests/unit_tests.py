@@ -44,5 +44,10 @@ class FastaRecordUnitTests(unittest.TestCase):
         self.assertEqual(str(fasta_record),
             '\n'.join([">seq101|testing", "atta", "TAAT"]))
 
+    def test_has_description_matches_function(self):
+        from tinyfasta import FastaRecord
+        fasta_record = FastaRecord(">seq101|testing\n")
+        self.assertTrue(callable(fasta_record.description_matches))
+
 if __name__ == "__main__":
     unittest.main()

@@ -29,6 +29,9 @@ class FastaRecord(object):
         """
         self._sequences.append( sequence_line.strip() )
 
+    def description_matches(self, search_term):
+        """Return True if the search_term is in the description."""
+
 class FastaParser(object):
     """Class for parsing FASTA files."""
 
