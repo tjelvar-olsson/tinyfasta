@@ -27,5 +27,14 @@ class FunctionalTests(unittest.TestCase):
         output_data = open(output_fasta, "r").read()
         self.assertEqual(input_data, output_data)
 
+    def test_descritpion_matches(self):
+        from tinyfasta import FastaParser
+        input_fasta = os.path.join(DATA_DIR, "dummy.fasta")
+        hits = [f for f in FastaParser(input_fasta)
+                if f.description_matches('seq3')]
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0].description,
+            ">seq3|ends with ATTA motif in second line")
+
 if __name__ == "__main__":
     unittest.main()
