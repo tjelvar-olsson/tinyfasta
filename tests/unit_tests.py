@@ -49,5 +49,12 @@ class FastaRecordUnitTests(unittest.TestCase):
         fasta_record = FastaRecord(">seq101|testing\n")
         self.assertTrue(callable(fasta_record.description_matches))
 
+    def test_description_matches_function(self):
+        from tinyfasta import FastaRecord
+        fasta_record = FastaRecord(">seq101|testing\n")
+        self.assertTrue(fasta_record.description_matches("seq101"))
+        self.assertTrue(fasta_record.description_matches("testing"))
+        self.assertFalse(fasta_record.description_matches("seq102"))
+
 if __name__ == "__main__":
     unittest.main()

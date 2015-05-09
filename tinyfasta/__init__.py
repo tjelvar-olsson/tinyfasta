@@ -31,6 +31,7 @@ class FastaRecord(object):
 
     def description_matches(self, search_term):
         """Return True if the search_term is in the description."""
+        return self.description.find(search_term) != -1
 
 class FastaParser(object):
     """Class for parsing FASTA files."""
