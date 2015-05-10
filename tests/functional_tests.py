@@ -43,5 +43,17 @@ class FunctionalTests(unittest.TestCase):
                 if f.sequence_matches('ATTA')]
         self.assertEqual(len(hits), 4)
 
+    def test_formatting_sequence(self):
+        from tinyfasta import FastaParser
+        input_fasta = os.path.join(DATA_DIR, "dummy.fasta")
+        hits = [f for f in FastaParser(input_fasta)
+                if f.description_matches('crazy formatting')]
+        fasta_record = hits[0]
+        fasta_record.format_sequence_line_length(78)
+        self.assertEqual(str(fasta_record), """>seq6|crazy formatting
+AAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTTAAAAAAATTTTTTTTTTTTTTTTTTT""")
+
+        
 if __name__ == "__main__":
     unittest.main()
