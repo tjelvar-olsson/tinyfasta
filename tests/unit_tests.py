@@ -74,6 +74,15 @@ class FastaRecordUnitTests(unittest.TestCase):
         fasta_record = FastaRecord(">seq101|testing\n")
         self.assertTrue(callable(fasta_record.format_sequence_line_length))
 
+    def test_format_sequence_line_length(self):
+        from tinyfasta import FastaRecord
+        fasta_record = FastaRecord(">seq101|testing\n")
+        fasta_record.add_sequence_line("A"*80)
+        self.assertEqual(len(fasta_record._sequences), 1)
+        fasta_record.format_sequence_line_length(60)
+        self.assertEqual(len(fasta_record._sequences), 2)
+        self.assertEqual(len(fasta_record._sequences[0]), 60)
+        self.assertEqual(len(fasta_record._sequences[1]), 20)
         
 if __name__ == "__main__":
     unittest.main()

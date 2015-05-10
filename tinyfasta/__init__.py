@@ -39,6 +39,10 @@ class FastaRecord(object):
 
     def format_sequence_line_length(self, line_length):
         """Format the sequence to use the specified line length."""
+        def string_to_list(seq, n):
+            """Return list strings of length n."""
+            return [seq[i:i+n] for i in range(0, len(seq), n)]
+        self._sequences = string_to_list(self.sequence, line_length)
 
 class FastaParser(object):
     """Class for parsing FASTA files."""

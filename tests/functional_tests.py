@@ -51,8 +51,8 @@ class FunctionalTests(unittest.TestCase):
         fasta_record = hits[0]
         fasta_record.format_sequence_line_length(78)
         self.assertEqual(str(fasta_record), """>seq6|crazy formatting
-AAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
-TTTTTTTAAAAAAATTTTTTTTTTTTTTTTTTT""")
+AAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+TTTTTTAAAAAAATTTTTTTTTTTTTTTTTTT""")
 
         
 if __name__ == "__main__":
