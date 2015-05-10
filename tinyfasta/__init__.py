@@ -33,6 +33,9 @@ class FastaRecord(object):
         """Return True if the search_term is in the description."""
         return self.description.find(search_term) != -1
 
+    def sequence_matches(self, search_motif):
+        """Return True if the motif is in the sequence."""
+
 class FastaParser(object):
     """Class for parsing FASTA files."""
 
