@@ -35,6 +35,7 @@ class FastaRecord(object):
 
     def sequence_matches(self, search_motif):
         """Return True if the motif is in the sequence."""
+        return self.sequence.find(search_motif) != -1
 
 class FastaParser(object):
     """Class for parsing FASTA files."""

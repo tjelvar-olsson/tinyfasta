@@ -61,5 +61,14 @@ class FastaRecordUnitTests(unittest.TestCase):
         fasta_record = FastaRecord(">seq101|testing\n")
         self.assertTrue(callable(fasta_record.sequence_matches))
 
+    def test_seqence_matches_function(self):
+        from tinyfasta import FastaRecord
+        fasta_record = FastaRecord(">seq101|testing\n")
+        fasta_record.add_sequence_line("AAAT")
+        fasta_record.add_sequence_line("TAAA")
+        self.assertTrue(fasta_record.sequence_matches("ATTA"))
+        self.assertFalse(fasta_record.sequence_matches("ACCA"))
+        
+        
 if __name__ == "__main__":
     unittest.main()
