@@ -37,6 +37,9 @@ class FastaRecord(object):
         """Return True if the motif is in the sequence."""
         return self.sequence.find(search_motif) != -1
 
+    def format_sequence_line_length(self, line_length):
+        """Format the sequence to use the specified line length."""
+
 class FastaParser(object):
     """Class for parsing FASTA files."""
 
