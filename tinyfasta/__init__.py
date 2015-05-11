@@ -47,7 +47,7 @@ class FastaRecord(object):
         :param search_motif: string or compiled regex
         :returns: bool
         """
-        if hasattr(search_motif, "match"):
+        if hasattr(search_motif, "search"):
             return search_motif.search(self.sequence) is not None
         return self.sequence.find(search_motif) != -1
 
