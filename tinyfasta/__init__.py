@@ -7,6 +7,18 @@ class FastaRecord(object):
     """Class representing a FASTA record."""
 
     @staticmethod
+    def _match(string, search_term):
+        """Return True if the search_term is in the string.
+
+        :param string: string to be searched
+        :param search_term: string or compiled regex
+        :returns: bool
+        """
+        if hasattr(search_term, "search"):
+            return search_term.search(string) is not None
+        return string.find(search_term) != -1
+
+    @staticmethod
     def create(description, sequence):
         """Return a FastaRecord."""
         fasta_record = FastaRecord(description)
@@ -38,10 +50,12 @@ class FastaRecord(object):
         self._sequences.append( sequence_line.strip() )
 
     def description_matches(self, search_term):
-        """Return True if the search_term is in the description."""
-        if hasattr(search_term, "search"):
-            return search_term.search(self.description) is not None
-        return self.description.find(search_term) != -1
+        """Return True if the search_term is in the description.
+
+        :param search_term: string or compiled regex
+        :returns: bool
+        """
+        return FastaRecord._match(self.description, search_term)
 
     def sequence_matches(self, search_motif):
         """Return True if the motif is in the sequence.
@@ -49,9 +63,7 @@ class FastaRecord(object):
         :param search_motif: string or compiled regex
         :returns: bool
         """
-        if hasattr(search_motif, "search"):
-            return search_motif.search(self.sequence) is not None
-        return self.sequence.find(search_motif) != -1
+        return FastaRecord._match(self.sequence, search_motif)
 
     def format_sequence_line_length(self, line_length=80):
         """Format the sequence to use the specified line length."""
