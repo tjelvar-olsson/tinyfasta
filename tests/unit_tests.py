@@ -68,7 +68,18 @@ class FastaRecordUnitTests(unittest.TestCase):
         fasta_record.add_sequence_line("TAAA")
         self.assertTrue(fasta_record.sequence_matches("ATTA"))
         self.assertFalse(fasta_record.sequence_matches("ACCA"))
-        
+
+    def test_seqence_matches_function_with_regex(self):
+        import re
+        regex_match = re.compile(r"A[T]{2}A")
+        regex_no_match = re.compile(r"A[T]{3}A")
+        from tinyfasta import FastaRecord
+        fasta_record = FastaRecord(">seq101|testing\n")
+        fasta_record.add_sequence_line("AAAT")
+        fasta_record.add_sequence_line("TAAA")
+        self.assertTrue(fasta_record.sequence_matches(regex_match))
+        self.assertFalse(fasta_record.sequence_matches(regex_no_match))
+
     def test_has_format_sequence_line_length(self):
         from tinyfasta import FastaRecord
         fasta_record = FastaRecord(">seq101|testing\n")

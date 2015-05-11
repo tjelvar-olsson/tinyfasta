@@ -54,6 +54,17 @@ class FunctionalTests(unittest.TestCase):
 AAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 TTTTTTAAAAAAATTTTTTTTTTTTTTTTTTT""")
 
+    def test_sequence_regex_match(self):
+        import re
+        regex = re.compile(r"A[C,T]{3}A")
+        from tinyfasta import FastaParser
+        input_fasta = os.path.join(DATA_DIR, "dummy.fasta")
+        hits = [f for f in FastaParser(input_fasta)
+                if f.sequence_matches(regex)]
+        self.assertEqual(len(hits), 2)
+        self.assertTrue(hits[0].startswith(">seq7")
+        self.assertTrue(hits[1].startswith(">seq8")
+
         
 if __name__ == "__main__":
     unittest.main()

@@ -41,6 +41,10 @@ Parsing a FASTA file
     TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
     AAAAAAA
     TTTTTTTTTTTTTTTTTTT
+    >seq7|contains ACCCA motif
+    AAAAAAAAAAAAAAAAAAAAAAAAAAACCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    >seq8|contains ATTTA motif
+    AAAAAAAAAAAAAAAAAAAAAAAAAAACCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 Identifying a FASTA record based on its description line
 --------------------------------------------------------
@@ -77,6 +81,22 @@ Identifying FASTA records based on a sequence motif
     >seq5|contains ATTA motif split over two lines
     AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT
     TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Alternatively one can use a compiled regular expression.
+
+.. code-block:: python
+
+    >>> import re
+    >>> motif = re.compile(r"A[C,T]{3}A")
+    >>> for fasta_record in FastaParser('tests/data/dummy.fasta'):
+    ...     if fasta_record.sequence_matches(motif):
+    ...         print(fasta_record)
+    ...
+    >seq7|contains ACCCA motif
+    AAAAAAAAAAAAAAAAAAAAAAAAAAACCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    >seq8|contains ATTTA motif
+    AAAAAAAAAAAAAAAAAAAAAAAAAAACCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
 
 Creating a FASTA record from a sequence string
 ----------------------------------------------
