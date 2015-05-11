@@ -39,6 +39,8 @@ class FastaRecord(object):
 
     def description_matches(self, search_term):
         """Return True if the search_term is in the description."""
+        if hasattr(search_term, "search"):
+            return search_term.search(self.description) is not None
         return self.description.find(search_term) != -1
 
     def sequence_matches(self, search_motif):

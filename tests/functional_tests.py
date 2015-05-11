@@ -62,8 +62,19 @@ TTTTTTAAAAAAATTTTTTTTTTTTTTTTTTT""")
         hits = [f for f in FastaParser(input_fasta)
                 if f.sequence_matches(regex)]
         self.assertEqual(len(hits), 2)
-        self.assertTrue(hits[0].startswith(">seq7")
-        self.assertTrue(hits[1].startswith(">seq8")
+        self.assertTrue(hits[0].description.startswith(">seq7"))
+        self.assertTrue(hits[1].description.startswith(">seq8"))
+
+    def test_description_regex_match(self):
+        import re
+        regex = re.compile(r">seq[7,8]\|")
+        from tinyfasta import FastaParser
+        input_fasta = os.path.join(DATA_DIR, "dummy.fasta")
+        hits = [f for f in FastaParser(input_fasta)
+                if f.description_matches(regex)]
+        self.assertEqual(len(hits), 2)
+        self.assertTrue(hits[0].description.startswith(">seq7"))
+        self.assertTrue(hits[1].description.startswith(">seq8"))
 
         
 if __name__ == "__main__":

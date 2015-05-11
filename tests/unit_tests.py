@@ -56,6 +56,16 @@ class FastaRecordUnitTests(unittest.TestCase):
         self.assertTrue(fasta_record.description_matches("testing"))
         self.assertFalse(fasta_record.description_matches("seq102"))
 
+    def test_description_matches_function_with_regex(self):
+        import re
+        regex_match = re.compile(r">seq1[0-9]{2}\|")
+        regex_no_match = re.compile(r">seq1[0-9]{3}\|")
+        from tinyfasta import FastaRecord
+        fasta_record = FastaRecord(">seq101|testing\n")
+        self.assertEqual(fasta_record.description, ">seq101|testing")
+        self.assertTrue(fasta_record.description_matches(regex_match))
+        self.assertFalse(fasta_record.description_matches(regex_no_match))
+
     def test_has_seqence_matches_function(self):
         from tinyfasta import FastaRecord
         fasta_record = FastaRecord(">seq101|testing\n")
