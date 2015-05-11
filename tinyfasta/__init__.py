@@ -6,6 +6,14 @@ __version__ = "0.0.1"
 class FastaRecord(object):
     """Class representing a FASTA record."""
 
+    @staticmethod
+    def create(description, sequence):
+        """Return a FastaRecord."""
+        fasta_record = FastaRecord(description)
+        fasta_record.add_sequence_line(sequence)
+        fasta_record.format_sequence_line_length()
+        return fasta_record
+
     def __init__(self, description_line):
         """Initialise an instance of the FastaRecord class."""
         self.description = description_line.strip()

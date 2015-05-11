@@ -84,5 +84,15 @@ class FastaRecordUnitTests(unittest.TestCase):
         self.assertEqual(len(fasta_record._sequences[0]), 60)
         self.assertEqual(len(fasta_record._sequences[1]), 20)
         
+    def test_create_fasta_record(self):
+        from tinyfasta import FastaRecord
+        description = ">seq101|testing"
+        sequence = "ATCG"*30
+        fasta_record = FastaRecord.create(description, sequence)
+        self.assertEqual(repr(fasta_record),
+""">seq101|testing
+ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG
+ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG""")
+
 if __name__ == "__main__":
     unittest.main()

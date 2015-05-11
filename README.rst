@@ -84,10 +84,9 @@ Creating a FASTA record from a sequence string
 .. code-block:: python
 
     >>> from tinyfasta import FastaRecord
-    >>> fasta_record = FastaRecord('>My Sequence')
-    >>> sequence_string = 'C' * 500
-    >>> fasta_record.add_sequence_line(sequence_string)
-    >>> fasta_record.format_sequence_line_length()
+    >>> description = '>My Sequence'
+    >>> sequence = 'C' * 500
+    >>> fasta_record = FastaRecord.create(description, sequence)
     >>> print(fasta_record)
     >My Sequence
     CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
