@@ -1,4 +1,4 @@
-Creating FASTA recrods
+Creating FASTA records
 ======================
 
 There are two ways of creating :class:`tinyfasta.FastaRecord` instances. We can
@@ -10,7 +10,7 @@ internally by the :class:`tinyfasta.FastaParser`.
 Using a long sequence string
 ----------------------------
 
-Let us import the :class:`tinyfasta.FastaRecord`` class and create a
+Let us import the :class:`tinyfasta.FastaRecord` class and create a
 description and sequence strings.
 
 .. code-block:: python
@@ -78,7 +78,8 @@ Note that by default the string representation of the
     CCCCCC
     GGGGGGGGGGGGGGG
 
-However, we can format the sequence to a standardised line length.
+However, using the :func:`tinyfasta.FastaRecord.format_sequence_line_length`
+function we can standardised line length.
 
 .. code-block:: python
 

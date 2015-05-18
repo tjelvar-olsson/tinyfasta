@@ -4,7 +4,7 @@ Quick Guide
 Installation
 ------------
 
-To install the tinyfasta package.
+To install the :mod:`tinyfasta` package.
 
 .. code-block:: bash
 
