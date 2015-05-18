@@ -49,7 +49,7 @@ class FastaRecord(object):
         """
         self._sequences.append( sequence_line.strip() )
 
-    def description_matches(self, search_term):
+    def description_contains(self, search_term):
         """Return True if the search_term is in the description.
 
         :param search_term: string or compiled regex
@@ -57,7 +57,7 @@ class FastaRecord(object):
         """
         return FastaRecord._match(self.description, search_term)
 
-    def sequence_matches(self, search_motif):
+    def sequence_contains(self, search_motif):
         """Return True if the motif is in the sequence.
 
         :param search_motif: string or compiled regex

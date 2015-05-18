@@ -27,27 +27,27 @@ class FunctionalTests(unittest.TestCase):
         output_data = open(output_fasta, "r").read()
         self.assertEqual(input_data, output_data)
 
-    def test_descritpion_matches(self):
+    def test_descritpion_contains(self):
         from tinyfasta import FastaParser
         input_fasta = os.path.join(DATA_DIR, "dummy.fasta")
         hits = [f for f in FastaParser(input_fasta)
-                if f.description_matches('seq3')]
+                if f.description_contains('seq3')]
         self.assertEqual(len(hits), 1)
         self.assertEqual(hits[0].description,
             ">seq3|ends with ATTA motif in second line")
 
-    def test_sequence_matches(self):
+    def test_sequence_contains(self):
         from tinyfasta import FastaParser
         input_fasta = os.path.join(DATA_DIR, "dummy.fasta")
         hits = [f for f in FastaParser(input_fasta)
-                if f.sequence_matches('ATTA')]
+                if f.sequence_contains('ATTA')]
         self.assertEqual(len(hits), 4)
 
     def test_formatting_sequence(self):
         from tinyfasta import FastaParser
         input_fasta = os.path.join(DATA_DIR, "dummy.fasta")
         hits = [f for f in FastaParser(input_fasta)
-                if f.description_matches('crazy formatting')]
+                if f.description_contains('crazy formatting')]
         fasta_record = hits[0]
         fasta_record.format_sequence_line_length(78)
         self.assertEqual(str(fasta_record), """>seq6|crazy formatting
@@ -60,7 +60,7 @@ TTTTTTAAAAAAATTTTTTTTTTTTTTTTTTT""")
         from tinyfasta import FastaParser
         input_fasta = os.path.join(DATA_DIR, "dummy.fasta")
         hits = [f for f in FastaParser(input_fasta)
-                if f.sequence_matches(regex)]
+                if f.sequence_contains(regex)]
         self.assertEqual(len(hits), 2)
         self.assertTrue(hits[0].description.startswith(">seq7"))
         self.assertTrue(hits[1].description.startswith(">seq8"))
@@ -71,7 +71,7 @@ TTTTTTAAAAAAATTTTTTTTTTTTTTTTTTT""")
         from tinyfasta import FastaParser
         input_fasta = os.path.join(DATA_DIR, "dummy.fasta")
         hits = [f for f in FastaParser(input_fasta)
-                if f.description_matches(regex)]
+                if f.description_contains(regex)]
         self.assertEqual(len(hits), 2)
         self.assertTrue(hits[0].description.startswith(">seq7"))
         self.assertTrue(hits[1].description.startswith(">seq8"))

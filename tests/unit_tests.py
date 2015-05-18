@@ -54,42 +54,42 @@ class FastaRecordUnitTests(unittest.TestCase):
         self.assertEqual(str(fasta_record),
             '\n'.join([">seq101|testing", "atta", "TAAT"]))
 
-    def test_has_description_matches_function(self):
+    def test_has_description_contains_function(self):
         from tinyfasta import FastaRecord
         fasta_record = FastaRecord(">seq101|testing\n")
-        self.assertTrue(callable(fasta_record.description_matches))
+        self.assertTrue(callable(fasta_record.description_contains))
 
-    def test_description_matches_function(self):
+    def test_description_contains_function(self):
         from tinyfasta import FastaRecord
         fasta_record = FastaRecord(">seq101|testing\n")
-        self.assertTrue(fasta_record.description_matches("seq101"))
-        self.assertTrue(fasta_record.description_matches("testing"))
-        self.assertFalse(fasta_record.description_matches("seq102"))
+        self.assertTrue(fasta_record.description_contains("seq101"))
+        self.assertTrue(fasta_record.description_contains("testing"))
+        self.assertFalse(fasta_record.description_contains("seq102"))
 
-    def test_description_matches_function_with_regex(self):
+    def test_description_contains_function_with_regex(self):
         import re
         regex_match = re.compile(r">seq1[0-9]{2}\|")
         regex_no_match = re.compile(r">seq1[0-9]{3}\|")
         from tinyfasta import FastaRecord
         fasta_record = FastaRecord(">seq101|testing\n")
         self.assertEqual(fasta_record.description, ">seq101|testing")
-        self.assertTrue(fasta_record.description_matches(regex_match))
-        self.assertFalse(fasta_record.description_matches(regex_no_match))
+        self.assertTrue(fasta_record.description_contains(regex_match))
+        self.assertFalse(fasta_record.description_contains(regex_no_match))
 
-    def test_has_seqence_matches_function(self):
+    def test_has_seqence_contains_function(self):
         from tinyfasta import FastaRecord
         fasta_record = FastaRecord(">seq101|testing\n")
-        self.assertTrue(callable(fasta_record.sequence_matches))
+        self.assertTrue(callable(fasta_record.sequence_contains))
 
-    def test_seqence_matches_function(self):
+    def test_seqence_contains_function(self):
         from tinyfasta import FastaRecord
         fasta_record = FastaRecord(">seq101|testing\n")
         fasta_record.add_sequence_line("AAAT")
         fasta_record.add_sequence_line("TAAA")
-        self.assertTrue(fasta_record.sequence_matches("ATTA"))
-        self.assertFalse(fasta_record.sequence_matches("ACCA"))
+        self.assertTrue(fasta_record.sequence_contains("ATTA"))
+        self.assertFalse(fasta_record.sequence_contains("ACCA"))
 
-    def test_seqence_matches_function_with_regex(self):
+    def test_seqence_contains_function_with_regex(self):
         import re
         regex_match = re.compile(r"A[T]{2}A")
         regex_no_match = re.compile(r"A[T]{3}A")
@@ -97,8 +97,8 @@ class FastaRecordUnitTests(unittest.TestCase):
         fasta_record = FastaRecord(">seq101|testing\n")
         fasta_record.add_sequence_line("AAAT")
         fasta_record.add_sequence_line("TAAA")
-        self.assertTrue(fasta_record.sequence_matches(regex_match))
-        self.assertFalse(fasta_record.sequence_matches(regex_no_match))
+        self.assertTrue(fasta_record.sequence_contains(regex_match))
+        self.assertFalse(fasta_record.sequence_contains(regex_no_match))
 
     def test_has_format_sequence_line_length(self):
         from tinyfasta import FastaRecord
