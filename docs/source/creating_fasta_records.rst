@@ -16,7 +16,7 @@ description and sequence strings.
 .. code-block:: python
 
     >>> from tinyfasta import FastaRecord
-    >>> description = '>My Sequence'
+    >>> description = 'My Sequence'
     >>> sequence = 'C' * 500
 
 We can now create a :class:`tinyfasta.FastaRecord` from the description and
@@ -55,7 +55,7 @@ Let us create a :class:`tinyfasta.FastaRecord` to add the sequence lines to.
 
 .. code-block:: python
 
-    >>> fasta_record = FastaRecord('>Yet Another Record')
+    >>> fasta_record = FastaRecord('Yet Another Record')
 
 Now we can start adding sequence lines to it.
 
