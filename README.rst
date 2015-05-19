@@ -15,3 +15,6 @@ To install the tinyfasta package::
 
     cd tinyfasta
     python setup.py install
+
+- Documentation: http://tinyfasta.readthedocs.org/en/latest/
+- Source: https://github.com/tjelvar-olsson/tinyfasta
