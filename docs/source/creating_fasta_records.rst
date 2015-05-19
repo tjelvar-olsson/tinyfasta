@@ -83,7 +83,7 @@ function we can standardised line length.
 
 .. code-block:: python
 
-    >>> fasta_record.format_sequence_line_length(30)
+    >>> fasta_record.sequence.format_line_length(30)
     >>> print(fasta_record)
     >Yet Another Record
     AAAAAAAATTTTTTTTTTTTCCCCCCGGGG

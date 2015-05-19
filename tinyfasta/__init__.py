@@ -1,45 +1,27 @@
 """tinyfasta package."""
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
+class _FastaRecordComponent(object):
+    """Component of a FastaRecort."""
 
-class FastaRecord(object):
-    """Class representing a FASTA record."""
-
-    @staticmethod
-    def _match(string, search_term):
-        """Return True if the search_term is in the string.
-
-        :param string: string to be searched
-        :param search_term: string or compiled regex
-        :returns: bool
-        """
+    def contains(self, search_term):
+        """Return True if the component contains the search term."""
         if hasattr(search_term, "search"):
-            return search_term.search(string) is not None
-        return string.find(search_term) != -1
+            return search_term.search(self._content) is not None
+        return self._content.find(search_term) != -1
 
-    @staticmethod
-    def create(description, sequence):
-        """Return a FastaRecord."""
-        fasta_record = FastaRecord(description)
-        fasta_record.add_sequence_line(sequence)
-        fasta_record.format_sequence_line_length()
-        return fasta_record
-
-    def __init__(self, description_line):
-        """Initialise an instance of the FastaRecord class."""
-        self.description = description_line.strip()
+class Sequence(_FastaRecordComponent):
+    """Class representing a biological sequence."""
+          
+    def __init__(self):
         self._sequences = []
 
-    def __repr__(self):
-        """Representation of the FastaRecord instance."""
-        lines = [self.description,]
-        lines.extend(self._sequences)
-        return '\n'.join(lines)
+    def __str__(self):
+        return self._content
 
     @property
-    def sequence(self):
-        """Return the full sequence as a string."""
+    def _content(self):
         return ''.join(self._sequences)
 
     def add_sequence_line(self, sequence_line):
@@ -49,28 +31,50 @@ class FastaRecord(object):
         """
         self._sequences.append( sequence_line.strip() )
 
-    def description_contains(self, search_term):
-        """Return True if the search_term is in the description.
-
-        :param search_term: string or compiled regex
-        :returns: bool
-        """
-        return FastaRecord._match(self.description, search_term)
-
-    def sequence_contains(self, search_motif):
-        """Return True if the motif is in the sequence.
-
-        :param search_motif: string or compiled regex
-        :returns: bool
-        """
-        return FastaRecord._match(self.sequence, search_motif)
-
-    def format_sequence_line_length(self, line_length=80):
+    def format_line_length(self, line_length=80):
         """Format the sequence to use the specified line length."""
         def string_to_list(seq, n):
             """Return list strings of length n."""
             return [seq[i:i+n] for i in range(0, len(seq), n)]
-        self._sequences = string_to_list(self.sequence, line_length)
+        self._sequences = string_to_list(self._content, line_length)
+    
+class FastaRecord(object):
+    """Class representing a FASTA record."""
+
+    class Description(_FastaRecordComponent):
+        """Class representing the description line in a FastaRecord."""
+        
+        def __init__(self, description):
+            self._content = description.strip()
+
+        def __str__(self):
+            return self._content
+
+    @staticmethod
+    def create(description, sequence):
+        """Return a FastaRecord."""
+        fasta_record = FastaRecord(description)
+        fasta_record.add_sequence_line(sequence)
+        fasta_record.sequence.format_line_length()
+        return fasta_record
+
+    def __init__(self, description_line):
+        """Initialise an instance of the FastaRecord class."""
+        self.description = FastaRecord.Description(description_line)
+        self.sequence = Sequence()
+
+    def __str__(self):
+        """String representation of the FastaRecord instance."""
+        lines = [str(self.description),]
+        lines.extend(self.sequence._sequences)
+        return '\n'.join(lines)
+
+    def add_sequence_line(self, sequence_line):
+        """
+        Add a sequence line to the FastaRecord instance.
+        This function can be called more than once.
+        """
+        self.sequence.add_sequence_line(sequence_line)
 
 class FastaParser(object):
     """Class for parsing FASTA files."""

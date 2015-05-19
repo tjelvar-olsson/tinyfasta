@@ -21,7 +21,7 @@ Now let us look for a FASTA record where the description contains the string
 .. code-block:: python
 
     >>> for fasta_record in fasta_parser:
-    ...     if fasta_record.description_contains('seq1'):
+    ...     if fasta_record.description.contains('seq1'):
     ...         print(fasta_record)
     ...
     >seq1|contains 2x78 A's
@@ -42,7 +42,7 @@ We can use compiled regular expression to identify FASTA records of interest.
 .. code-block:: python
 
     >>> for fasta_record in fasta_parser:
-    ...     if fasta_record.description_contains(search_term):
+    ...     if fasta_record.description.contains(search_term):
     ...         print(fasta_record)
     ...
     >seq1|contains 2x78 A's
@@ -67,7 +67,7 @@ Let us first look for records containing a simple ``ATTA`` motif.
 .. code-block:: python
 
     >>> for fasta_record in fasta_parser:
-    ...     if fasta_record.sequence_contains('ATTA'):
+    ...     if fasta_record.sequence.contains('ATTA'):
     ...         print(fasta_record)
     ...
     >seq2|starts with ATTA motif in first line
@@ -105,7 +105,7 @@ Now let us find all the FASTA records that contain this motif.
 .. code-block:: python
 
     >>> for fasta_record in fasta_parser:
-    ...     if fasta_record.sequence_contains(motif):
+    ...     if fasta_record.sequence.contains(motif):
     ...         print(fasta_record)
     ...
     >seq7|contains ACCCA motif
