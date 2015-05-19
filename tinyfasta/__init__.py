@@ -45,10 +45,17 @@ class FastaRecord(object):
         """Class representing the description line in a FastaRecord."""
         
         def __init__(self, description):
-            self._content = description.strip()
+            self.update(description)
 
         def __str__(self):
             return self._content
+
+        def update(self, description):
+            """Update the content of the description."""
+            if not description.startswith(">"):
+                description = ">{}".format(description)
+            self._content = description.strip()
+
 
     @staticmethod
     def create(description, sequence):

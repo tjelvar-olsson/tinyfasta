@@ -64,6 +64,11 @@ class DescriptionUnitTests(unittest.TestCase):
         description = FastaRecord.Description(">seq101|testing\n")
         self.assertTrue(isinstance(description, FastaRecord.Description))
 
+    def test_Description_initialisation_withount_leading_arrow(self):
+        from tinyfasta import FastaRecord
+        description = FastaRecord.Description("seq101|testing\n")
+        self.assertEqual(str(description), ">seq101|testing")
+
     def test_content(self):
         from tinyfasta import FastaRecord
         description = FastaRecord.Description(">seq101|testing\n")
@@ -74,6 +79,17 @@ class DescriptionUnitTests(unittest.TestCase):
         description = FastaRecord.Description(">seq101|testing\n")
         self.assertEqual(str(description), ">seq101|testing")
         
+    def test_update_description(self):
+        from tinyfasta import FastaRecord
+        description = FastaRecord.Description(">seq101|testing\n")
+        self.assertEqual(str(description), ">seq101|testing")
+        description.update(">seq102|testing\n")
+        self.assertEqual(str(description), ">seq102|testing")
+        description.update(">seq103|testing")
+        self.assertEqual(str(description), ">seq103|testing")
+        description.update(">seq104|testing")
+        self.assertEqual(str(description), ">seq104|testing")
+
 class SequenceUnitTests(unittest.TestCase):
 
     def test_Sequence_initialisation(self):
