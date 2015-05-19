@@ -24,8 +24,14 @@ class NoseTestCommand(TestCommand):
 
 
 setup(name="tinyfasta",
-      version=tinyfasta.__version__,
       packages=["tinyfasta"],
+      version=tinyfasta.__version__,
+      description="Tiny FASTA package, without dependencies, for processing biological sequence files.",
+      author="Tjelvar Olsson",
+      author_email="tjelvar.olsson@gmail.com",
+      url="https://github.com/tjelvar-olsson/tinyfasta",
+      download_url="https://github.com/tjelvar-olsson/tinyfasta/{}".format(tinyfasta.__version__),
+      keywords=["fasta", "bioinformatics"],
       cmdclass={"test": NoseTestCommand},
       tests_require=["nose", "coverage"],
 )
