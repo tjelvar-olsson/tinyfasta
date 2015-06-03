@@ -1,5 +1,16 @@
+TinyFasta
+=========
+
+.. image:: https://travis-ci.org/tjelvar-olsson/tinyfasta.svg?branch=master
+   :target: https://travis-ci.org/tjelvar-olsson/tinyfasta
+   :alt: Travis CI build status (Linux)
+
+.. image:: https://readthedocs.org/projects/tinyfasta/badge/?version=latest
+   :target: https://readthedocs.org/projects/tinyfasta/?badge=latest
+   :alt: Documentation Status
+
 Quick Guide
-===========
+-----------
 
 TinyFasta is a Python package for parsing biological sequences from FASTA
 files.
