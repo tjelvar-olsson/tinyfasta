@@ -9,6 +9,11 @@ TinyFasta
    :target: https://readthedocs.org/projects/tinyfasta/?badge=latest
    :alt: Documentation Status
 
+- Documentation: http://tinyfasta.readthedocs.org/en/latest/
+- GitHub: https://github.com/tjelvar-olsson/tinyfasta
+- Free software: MIT License
+- PyPI: https://pypi.python.org/pypi/tinyfasta
+
 Quick Guide
 -----------
 
@@ -47,5 +52,3 @@ To create a FASTA record::
     CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
     CCCCCCCCCCCCCCCCCCCC
 
-- Documentation: http://tinyfasta.readthedocs.org/en/latest/
-- Source: https://github.com/tjelvar-olsson/tinyfasta
