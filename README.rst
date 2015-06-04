@@ -5,6 +5,10 @@ TinyFasta
    :target: https://travis-ci.org/tjelvar-olsson/tinyfasta
    :alt: Travis CI build status (Linux)
 
+.. image:: https://codecov.io/github/tjelvar-olsson/tinyfasta/coverage.svg?branch=master
+   :target: https://codecov.io/github/tjelvar-olsson/tinyfasta?branch=master
+   :alt: Code Coverage
+
 .. image:: https://readthedocs.org/projects/tinyfasta/badge/?version=latest
    :target: https://readthedocs.org/projects/tinyfasta/?badge=latest
    :alt: Documentation Status
@@ -26,6 +30,8 @@ such have dependencies on NumPy and SciPy . These are quite heavy weight
 dependencies if all you want to do is a little bit of text processing. This is
 where TinyFasta fits in. It is a lightweight Python package with no
 dependencies outside of the Python standard library.
+
+TinyFasta works with with Python 2.7, 3.2, 3.3, and 3.4.
 
 To install the TinyFasta package::
 
