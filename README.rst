@@ -1,6 +1,10 @@
 TinyFasta
 =========
 
+.. image:: https://badge.fury.io/py/tinyfasta.svg
+   :target: http://badge.fury.io/py/tinyfasta
+   :alt: PyPI package
+
 .. image:: https://travis-ci.org/tjelvar-olsson/tinyfasta.svg?branch=master
    :target: https://travis-ci.org/tjelvar-olsson/tinyfasta
    :alt: Travis CI build status (Linux)
