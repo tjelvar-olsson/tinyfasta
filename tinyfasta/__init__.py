@@ -31,6 +31,10 @@ class Sequence(_FastaRecordComponent):
     def __str__(self):
         return self._content
 
+    def __len__(self):
+        """Return the length of the biological sequence."""
+        return sum(len(s) for s in self._sequences)
+
     @property
     def _content(self):
         """Return the sequence as a string.
@@ -117,6 +121,10 @@ class FastaRecord(object):
         lines = [str(self.description),]
         lines.extend(self.sequence._sequences)
         return '\n'.join(lines)
+
+    def __len__(self):
+        """Return the length of the biological sequence."""
+        return len(self.sequence)
 
     def add_sequence_line(self, sequence_line):
         """Add a sequence line to the :class:`tinyfasta.FastaRecord` instance.

@@ -112,3 +112,26 @@ Now let us find all the FASTA records that contain this motif.
     AAAAAAAAAAAAAAAAAAAAAAAAAAACCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     >seq8|contains ATTTA motif
     AAAAAAAAAAAAAAAAAAAAAAAAAAATTTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
+Matching based on the sequence length
+-------------------------------------
+
+The ``__len__()`` magic method of both the :class:`tinyfasta.Sequence` and
+:class:`tinyfasta.FastaRecord` classes return the length of the biological
+sequence. One can therefore use Python's built-in :func:`len` function when
+looking for sequences of a particular length.
+
+For example suppose we wanted to find all the sequences with fewer than 80
+bases.
+
+.. code-block:: python
+
+    >>> for fasta_record in fasta_parser:
+    ...     if len(fasta_record) < 80:
+    ...         print(fasta_record)
+    ...
+    >seq7|contains ACCCA motif
+    AAAAAAAAAAAAAAAAAAAAAAAAAAACCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    >seq8|contains ATTTA motif
+    AAAAAAAAAAAAAAAAAAAAAAAAAAATTTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

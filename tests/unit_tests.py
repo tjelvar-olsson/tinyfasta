@@ -133,6 +133,17 @@ class SequenceUnitTests(unittest.TestCase):
         self.assertEqual(len(sequence._sequences[0]), 60)
         self.assertEqual(len(sequence._sequences[1]), 20)
         
+    def test_len(self):
+        from tinyfasta import Sequence
+        sequence = Sequence()
+        sequence.add_sequence_line("atta\n")
+        sequence.add_sequence_line("TAAT")
+        self.assertEqual(len(sequence), 8)
+
+    def test_len_zero(self):
+        from tinyfasta import Sequence
+        sequence = Sequence()
+        self.assertEqual(len(sequence), 0)
 
 class FastaRecordUnitTests(unittest.TestCase):
 
@@ -181,6 +192,18 @@ class FastaRecordUnitTests(unittest.TestCase):
 """>seq101|testing
 ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG
 ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG""")
+
+    def test_len(self):
+        from tinyfasta import FastaRecord
+        fasta_record = FastaRecord(">seq101|testing\n")
+        fasta_record.add_sequence_line("atta\n")
+        fasta_record.add_sequence_line("TAAT")
+        self.assertEqual(len(fasta_record), 8)
+
+    def test_len_when_empty(self):
+        from tinyfasta import FastaRecord
+        fasta_record = FastaRecord(">seq101|testing\n")
+        self.assertEqual(len(fasta_record), 0)
 
 if __name__ == "__main__":
     unittest.main()
