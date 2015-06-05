@@ -7,7 +7,7 @@ method to create :class:`tinyfasta.FastaRecord` instances, which can be written
 to file.
 """
 
-__version__ = "0.0.2"
+__version__ = "0.1.0"
 
 class _FastaRecordComponent(object):
     """Component of a FastaRecort."""
