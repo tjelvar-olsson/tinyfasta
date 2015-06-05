@@ -9,6 +9,10 @@ TinyFasta
    :target: https://travis-ci.org/tjelvar-olsson/tinyfasta
    :alt: Travis CI build status (Linux)
 
+.. image:: https://ci.appveyor.com/api/projects/status/a7n80uibbsh0s4h8/branch/master?svg=true
+   :target: https://ci.appveyor.com/project/tjelvar-olsson/tinyfasta
+   :alt: AppVeyor CI build status (Windows)
+
 .. image:: https://codecov.io/github/tjelvar-olsson/tinyfasta/coverage.svg?branch=master
    :target: https://codecov.io/github/tjelvar-olsson/tinyfasta?branch=master
    :alt: Code Coverage
@@ -17,25 +21,25 @@ TinyFasta
    :target: https://readthedocs.org/projects/tinyfasta/?badge=latest
    :alt: Documentation Status
 
+Python package for working with biological sequences from FASTA files.
+
 - Documentation: http://tinyfasta.readthedocs.org/en/latest/
 - GitHub: https://github.com/tjelvar-olsson/tinyfasta
-- Free software: MIT License
 - PyPI: https://pypi.python.org/pypi/tinyfasta
+- Free software: MIT License
+
+
+Features
+--------
+
+- Easy to use: intuitive API for parsing, searching and writing FASTA files
+- Lightweight: no dependencies outside Python's standard library
+- Cross-platform: Linux, Mac and Windows are all supported
+- Works with with Python 2.7, 3.2, 3.3, and 3.4
+
 
 Quick Guide
 -----------
-
-TinyFasta is a Python package for parsing biological sequences from FASTA
-files.
-
-There are already several Python packages available for parsing FASTA files.
-However, many of these packages do much more than just parse FASTA files and as
-such have dependencies on NumPy and SciPy . These are quite heavy weight
-dependencies if all you want to do is a little bit of text processing. This is
-where TinyFasta fits in. It is a lightweight Python package with no
-dependencies outside of the Python standard library.
-
-TinyFasta works with with Python 2.7, 3.2, 3.3, and 3.4.
 
 To install the TinyFasta package::
 
