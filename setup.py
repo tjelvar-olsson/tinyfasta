@@ -23,14 +23,34 @@ class NoseTestCommand(TestCommand):
         nose.run_exit(argv=['nosetests'])
 
 
+readme = open('README.rst').read()
+
 setup(name="tinyfasta",
       packages=["tinyfasta"],
       version=tinyfasta.__version__,
       description="Tiny FASTA package, without dependencies, for processing biological sequence files.",
+      long_description=readme,
       author="Tjelvar Olsson",
       author_email="tjelvar.olsson@gmail.com",
       url="https://github.com/tjelvar-olsson/tinyfasta",
       download_url="https://github.com/tjelvar-olsson/tinyfasta/{}".format(tinyfasta.__version__),
+      license='MIT',
+      classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Topic :: Scientific/Engineering",
+        "Topic :: Scientific/Engineering :: Bio-Informatics",
+      ],
       keywords=["fasta", "bioinformatics"],
       cmdclass={"test": NoseTestCommand},
       tests_require=["nose", "coverage"],
