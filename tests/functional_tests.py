@@ -102,7 +102,12 @@ TTTTTTAAAAAAATTTTTTTTTTTTTTTTTTT""")
         gzipped_fasta = os.path.join(TMP_DIR, "tmp.fasta.gz")
         with gzip.open(gzipped_fasta, "wb") as fh:
             with open(raw_fasta, "r") as fh2:
-                fh.write(fh2.read())
+                try:
+                    # Python 2.
+                    fh.write(fh2.read())
+                except TypeError:
+                    # Python 3.
+                    fh.write(bytes(fh2.read(), "UTF-8"))
         output_fasta = os.path.join(TMP_DIR, "tmp.fasta")
         with open(output_fasta, "w") as fh:
             for fasta_record in FastaParser(gzipped_fasta, fopen=gzip.open):
