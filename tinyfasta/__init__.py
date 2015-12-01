@@ -140,17 +140,22 @@ class FastaRecord(object):
 class FastaParser(object):
     """Class for parsing FASTA files."""
 
-    def __init__(self, fpath):
+    def __init__(self, fpath, fopen=open):
         """Initialise an instance of the FastaParser.
+
+        To parse a gzipped FASTA file import the gzip module and pass the
+        gzip.open function to the opener argument.
         
         :param fpath: path to the FASTA file to be parsed
+        :param fopen: function for opening the file
         """
         self.fpath = fpath
+        self.fopen = fopen
 
     def __iter__(self):
         """Yield FastaRecord instances."""
         fasta_record = None
-        with open(self.fpath, 'r') as fh:
+        with self.fopen(self.fpath, 'r') as fh:
             for line in fh:
                 if line.startswith('>'):
                     if fasta_record:
