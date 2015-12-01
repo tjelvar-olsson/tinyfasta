@@ -95,27 +95,6 @@ TTTTTTAAAAAAATTTTTTTTTTTTTTTTTTT""")
         self.assertTrue(str(hits[0].description).startswith(">seq7"))
         self.assertTrue(str(hits[1].description).startswith(">seq8"))
 
-    def test_gzipped_input(self):
-        from tinyfasta import FastaParser
-        import gzip
-        raw_fasta = os.path.join(DATA_DIR, "dummy.fasta")
-        gzipped_fasta = os.path.join(TMP_DIR, "tmp.fasta.gz")
-        with gzip.open(gzipped_fasta, "wb") as fh:
-            with open(raw_fasta, "r") as fh2:
-                try:
-                    # Python 2.
-                    fh.write(fh2.read())
-                except TypeError:
-                    # Python 3.
-                    fh.write(bytes(fh2.read(), "UTF-8"))
-        output_fasta = os.path.join(TMP_DIR, "tmp.fasta")
-        with open(output_fasta, "w") as fh:
-            for fasta_record in FastaParser(gzipped_fasta, fopen=gzip.open):
-                fh.write("{}\n".format(fasta_record))
-        raw_data = open(raw_fasta, "r").read()
-        output_data = open(output_fasta, "r").read()
-        self.assertEqual(raw_data, output_data)
-
         
 if __name__ == "__main__":
     unittest.main()
