@@ -138,14 +138,19 @@ class FastaRecord(object):
         self.sequence.add_sequence_line(sequence_line)
 
 class FastaParser(object):
-    """Class for parsing FASTA files."""
+    """Class for parsing FASTA files.
+
+    To parse a gzipped FASTA file import the gzip module and pass the gzip.open
+    function to the fopen argument::
+
+        import gzip
+        fasta_parser = FastaParser("uniprot_sprot.fasta.gz", fopen=gzip.open)
+
+    """
 
     def __init__(self, fpath, fopen=open):
         """Initialise an instance of the FastaParser.
 
-        To parse a gzipped FASTA file import the gzip module and pass the
-        gzip.open function to the opener argument.
-        
         :param fpath: path to the FASTA file to be parsed
         :param fopen: function for opening the file
         """
