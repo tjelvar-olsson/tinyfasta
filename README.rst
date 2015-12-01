@@ -35,7 +35,7 @@ Features
 - Easy to use: intuitive API for parsing, searching and writing FASTA files
 - Lightweight: no dependencies outside Python's standard library
 - Cross-platform: Linux, Mac and Windows are all supported
-- Works with with Python 2.7, 3.2, 3.3, and 3.4
+- Works with with Python 2.7, 3.3, 3.4 and 3.5
 
 
 Quick Guide
