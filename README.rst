@@ -23,7 +23,7 @@ TinyFasta
 
 Python package for working with biological sequences from FASTA files.
 
-- Documentation: http://tinyfasta.readthedocs.org/en/latest/
+- Documentation: http://tinyfasta.readthedocs.io
 - GitHub: https://github.com/tjelvar-olsson/tinyfasta
 - PyPI: https://pypi.python.org/pypi/tinyfasta
 - Free software: MIT License
